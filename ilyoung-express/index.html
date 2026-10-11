@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#171818">
+  <title>일영 익스프레스: 아무도 막을 수 없다</title>
+  <meta name="description" content="시험까지 남은 시간, 멈추지 않는 일영의 질주. 브레이크 없는 횡스크롤 기차 게임.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="style.css">
+  <script src="main.js" defer></script>
+</head>
+<body>
+  <canvas id="game" aria-label="일영의 열차가 시험장역으로 달리는 게임 화면"></canvas>
+  <div class="interface">
+    <header class="hud">
+      <div class="countdown-block"><span class="eyebrow"><i class="live-dot"></i> 시험까지</span><strong id="countdown">00:00:00</strong></div>
+      <div class="speed-block"><span class="eyebrow" id="trainName">무궁화호</span><strong><span id="speed">008</span><small> km/h</small></strong></div>
+      <div class="hud-right"><span class="running-label">무정차 운행 중</span><button id="sound" class="sound-button" type="button" aria-label="소리 켜기" aria-pressed="false">🔇</button></div>
+    </header>
+    <section class="route" aria-label="시험장역까지의 진행도" hidden>
+      <div class="route-caption"><span>정차는 없습니다.</span><span id="progressText">0% 이동</span></div>
+      <div id="routeTrack" class="route-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="시험장역까지 진행도"><span id="routeFill" class="route-fill"></span><span id="routeTrain" class="route-train"></span></div>
+      <div class="stations"><span>공부시작역</span><span>벼락치기역</span><span>카페인역</span><span>새벽3시역</span><span>시험장역</span></div>
+    </section>
+    <main class="hero">
+      <div class="hero-kicker"><span class="ticket-mark">편도</span> 오늘의 목적지는 단 하나</div>
+      <h1>일영 <span>익스프레스</span><em>아무도 막을 수 없다.</em></h1>
+      <p>시험은 다가오고, 일영은 달린다.<br>이 열차에는 포기하는 법이 없다.</p>
+    </main>
+    <aside class="journey-info"><span class="eyebrow">현재 운행 단계</span><div><strong id="stageNumber">01</strong><span> / 06</span></div><p id="stageCaption">시작은 언제나 평범했다.</p><div class="stage-ticks" aria-hidden="true"><i class="active"></i><i></i><i></i><i></i><i></i><i></i></div><span class="counter">장애물 돌파 <b id="cleared">0</b>개</span></aside>
+    <div id="evolution" class="evolution" aria-live="polite"></div>
+    <div id="overdrive" class="overdrive" hidden>카페인 폭주 모드</div>
+    <footer class="controls">
+      <section class="coffee-panel"><div><span>☕ 카페인</span><strong><span id="coffeeValue">30</span><small> / 100</small></strong></div><div class="fuel-track" role="meter" aria-label="카페인" aria-valuemin="0" aria-valuemax="100" aria-valuenow="30" id="coffeeMeter"><span id="coffeeFill"></span></div><p id="coffeeStatus">커피 한 잔의 힘을 믿습니다.</p></section>
+      <div class="announcement"><span class="broadcast-label"><i></i> 차내 안내방송</span><p id="bubble" aria-live="polite">열차가 출발했습니다. 포기는 다음 역에서도 불가능합니다.</p></div>
+      <button id="brake" class="brake" type="button"><span class="brake-symbol" aria-hidden="true">Ⅱ</span><span id="brakeLabel">브레이크</span><small>누르면 멈출까요?</small></button>
+    </footer>
+    <div class="key-guide"><span><kbd>→</kbd> <kbd>D</kbd> 가속</span><span><kbd>스페이스</kbd> <kbd>↑</kbd> 점프</span><span><kbd>B</kbd> 브레이크</span><span class="guide-note">※ 정차를 기대하지 마세요.</span></div>
+    <div class="touch-guide" hidden><span>왼쪽 꾹 · 가속</span><span>오른쪽 톡 · 점프</span></div>
+    <div class="bottom-line"><span>일영 전용 · 무정차 특급</span><span>출발은 선택, 질주는 필연.</span><span id="clockLabel">시험장행</span></div>
+  </div>
+  <section id="ending" class="ending" hidden aria-labelledby="endingTitle" role="dialog" aria-modal="true">
+    <div class="ending-card"><span class="ending-tag">이번 역은, 종착역입니다.</span><h2 id="endingTitle">일영의 질주는<br><em>계속된다</em></h2><p>시험장까지 왔다. 이제, 증명할 시간.</p><div class="results"><div><span>장애물 돌파</span><strong id="resultCleared">0개</strong></div><div><span>커피 섭취</span><strong id="resultCoffee">0잔</strong></div><div><span>브레이크</span><strong id="resultBrake">시도 0회 / 성공 0회</strong></div></div><button id="restart" type="button">다시 질주하기 <span aria-hidden="true">↗</span></button><small>다음 질주에도 브레이크는 제공되지 않습니다.</small></div>
+  </section>
+  <noscript>이 열차를 출발시키려면 브라우저의 자바스크립트를 켜 주세요.</noscript>
+</body>
+</html>
